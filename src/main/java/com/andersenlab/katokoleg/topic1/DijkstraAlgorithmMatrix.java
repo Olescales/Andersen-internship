@@ -21,7 +21,7 @@ public class DijkstraAlgorithmMatrix {
                 if (graph[current][checked] == 0 || visited[checked]) {
                     continue;
                 }
-                if (minVertex == -1 || !visited[current] && graph[current][minVertex] > graph[current][checked]) {
+                if (minVertex == -1 || graph[current][minVertex] > graph[current][checked]) {
                     minVertex = checked;
                 }
 
@@ -35,6 +35,6 @@ public class DijkstraAlgorithmMatrix {
                 return costs[finishVertex - 1];
             }
         } while (current != -1);
-        return -1;
+        return current;
     }
 }
