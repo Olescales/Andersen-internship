@@ -1,6 +1,7 @@
 package com.andersenlab.katokoleg.topic2;
 
 import java.util.Arrays;
+import java.util.stream.Stream;
 
 public class CustomHashMap<K, V> {
 
@@ -108,6 +109,9 @@ public class CustomHashMap<K, V> {
     }
 
     public int size() {
+        Stream.of(1, 2, 3, 4, 2, 5)
+                .dropWhile(x -> x >= 3)
+                .forEach(System.out::println);
         return size;
     }
 
