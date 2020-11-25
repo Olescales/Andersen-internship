@@ -7,7 +7,9 @@ import java.util.List;
 
 public interface UserDAL {
 
-    List<User> getRoleUsers (long roleID);
+    List<User> getRoleUsers(long roleID);
 
-    List<UserRole> getUserRoles (long userID);
+    List<UserRole> getUserRoles(long userID);
+
+    boolean addUser(User user);
 }

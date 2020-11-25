@@ -13,8 +13,9 @@ import java.util.List;
 
 public class UserDALImpl implements UserDAL {
 
-    private static final String GET_ALL_USER_ROLES = "SELECT r.name FROM users_has_roles ur JOIN roles r ON ur.role_id = r.id WHERE ur.user_id = ?";
+    private static final String GET_ALL_USER_ROLES = "SELECT r.name FROM users_has_roles ur JOIN user_role r ON ur.role_id = r.id WHERE ur.user_id = ?";
     private static final String GET_ALL_ROLE_USERS = "SELECT * FROM users u JOIN users_has_roles ur ON u.id = ur.user_id WHERE role_id = ?";
+    private static final String ADD_USER = "INSERT INTO USERS (login, password) VALUES (?,?)";
     private final DataSource dataSource;
 
     public UserDALImpl(DataSource dataSource) {
@@ -57,5 +58,19 @@ public class UserDALImpl implements UserDAL {
             e.printStackTrace();
         }
         return roles;
+    }
+
+    @Override
+    public boolean addUser(User user) {
+        boolean result = false;
+        try (Connection connection = dataSource.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER)) {
+            preparedStatement.setString(1, user.getLogin());
+            preparedStatement.setString(2, user.getPassword());
+            result = preparedStatement.execute();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
