@@ -4,12 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.hbm2ddl.auto">create</property>
         <property name="hibernate.dialect">org.hibernate.dialect.H2Dialect</property>
-        <property name="hibernate.connection.url">jdbc:h2:mem:test<!--;INIT=runscript from '/src/main/resources/create.sql'\\;runscript from '/src/main/resources/init.sql'--></property>
+        <property name="hibernate.connection.url">jdbc:h2:mem:test</property>
+        <property name="hibernate.show_sql">true</property>
 
-        <mapping class="com.andersenlab.katokoleg.hibernate.HibernateUtil"/>
         <mapping class="com.andersenlab.katokoleg.hibernate.entity.User"/>
         <mapping class="com.andersenlab.katokoleg.hibernate.entity.UserRole"/>
+        <mapping class="com.andersenlab.katokoleg.hibernate.entity.Role"/>
     </session-factory>
 </hibernate-configuration>

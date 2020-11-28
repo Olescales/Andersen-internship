@@ -1,22 +1,31 @@
 package com.andersenlab.katokoleg.hibernate.entity;
 
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     private String login;
     private String password;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private List<UserRole> roles;
+    private List<UserRole> roles = new ArrayList<>();
 
     public User() {
+    }
+
+    public User(String login, String password, UserRole... userRoles) {
+        this.login = login;
+        this.password = password;
+        roles.addAll(Arrays.asList(userRoles));
     }
 
     public long getId() {
