@@ -6,14 +6,14 @@ import com.andersenlab.katokoleg.hibernate.entity.User;
 import com.andersenlab.katokoleg.hibernate.entity.UserRole;
 import org.hibernate.Session;
 
-import java.util.List;
+import java.util.Set;
 
 public class UserRoleDALImpl implements UserRoleDAL {
     @Override
-    public List<User> getUsers(Role role) {
+    public Set<User> getUsers(Role role) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
-            List<User> users = session.get(UserRole.class, 2L).getUsers();
+            Set<User> users = session.get(UserRole.class, (long)role.ordinal()).getUsers();
             session.getTransaction().commit();
             return users;
         }

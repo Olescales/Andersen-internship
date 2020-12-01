@@ -1,4 +1,4 @@
-package com.andersenlab.katokoleg.hibernate.entity;
+package com.andersenlab.katokoleg.servlets.entity;
 
 import javax.persistence.*;
 import java.util.Arrays;

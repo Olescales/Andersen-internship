@@ -2,10 +2,10 @@ package com.andersenlab.katokoleg.hibernate.dal;
 
 import com.andersenlab.katokoleg.hibernate.entity.UserRole;
 
-import java.util.List;
+import java.util.Set;
 
 public interface UserDAL {
 
-    List<UserRole> getUserRoles(long userID);
+    Set<UserRole> getUserRoles(long userID);
 
 }

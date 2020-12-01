@@ -5,15 +5,15 @@ import com.andersenlab.katokoleg.hibernate.entity.Role;
 import com.andersenlab.katokoleg.hibernate.entity.User;
 import com.andersenlab.katokoleg.hibernate.entity.UserRole;
 import org.hibernate.Session;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @RunWith(JUnit4.class)
 public class UserDALImplTest {
@@ -40,21 +40,21 @@ public class UserDALImplTest {
 
     @Test
     public void testGetUserRolesOne() {
-        List<UserRole> roleUsers = userDAL.getUserRoles(1L);
-        List<UserRole> expectedRoles = new ArrayList(List.of(new UserRole(Role.ADMIN), new UserRole(Role.USER)));
+        Set<UserRole> roleUsers = userDAL.getUserRoles(1L);
+        Set<UserRole> expectedRoles = new HashSet<>(List.of(new UserRole(Role.ADMIN), new UserRole(Role.USER)));
         Assert.assertEquals(expectedRoles, roleUsers);
     }
 
     @Test
     public void testGetUserRolesTwo() {
-        List<UserRole> roleUsers = userDAL.getUserRoles(2L);
-        List<UserRole> expectedRoles = new ArrayList(List.of(new UserRole(Role.USER)));
+        Set<UserRole> roleUsers = userDAL.getUserRoles(2L);
+        Set<UserRole> expectedRoles = new HashSet<>(List.of(new UserRole(Role.USER)));
         Assert.assertEquals(expectedRoles, roleUsers);
     }
 
     @Test
     public void testGetRoleUsersTwo() {
-        List<User> users = userRoleDAL.getUsers(Role.USER);
+        Set<User> users = userRoleDAL.getUsers(Role.USER);
         Assert.assertEquals(2, users.size());
     }
 
